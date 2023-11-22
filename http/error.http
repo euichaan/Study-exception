@@ -1,0 +1,5 @@
+### 에러 테스트
+GET http://localhost:8080/test
+
+### 404 Error
+GET http://localhost:8080/sfkk

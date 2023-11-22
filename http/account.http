@@ -1,0 +1,11 @@
+POST http://localhost:8080/new
+Content-Type: application/json
+
+{
+  "email": "email_9e82144b9143",
+  "firstName": "firstName_47891d74ee32",
+  "password": "password_710885fab14a",
+  "address1": "address1_4d3c0473193f",
+  "address2": "address2_90ef59e2ccfa",
+  "zip": "zip_6a3a823fb6b3"
+}
