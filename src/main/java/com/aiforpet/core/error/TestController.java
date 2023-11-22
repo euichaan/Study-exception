@@ -8,6 +8,6 @@ public class TestController {
 
     @GetMapping("/test")
     public void test() {
-        throw new IllegalArgumentException("메시지");
+        throw new IllegalArgumentException("Account Does not Exists");
     }
 }
