@@ -23,18 +23,29 @@ public class ErrorController extends BasicErrorController {
     @Override
     protected Map<String, Object> getErrorAttributes(HttpServletRequest request, ErrorAttributeOptions options) {
         Map<String, Object> errorAttributes = super.getErrorAttributes(request, options);
-        errorAttributes.forEach((key, value) -> System.out.println(key + " " + value));
-
-        log.error("trace = {}", errorAttributes.get("trace"));
         ErrorCode errorCode = ErrorCode.UNDEFINED;
 
-        ErrorResponse errorResponse = new ErrorResponse(
+        Object error = errorAttributes.get("error");
+        Object status = errorAttributes.get("status");
+        if (validateNotFound(error, status)) {
+            errorCode = ErrorCode.E005;
+        }
+
+        ErrorResponse errorResponse = createErrorResponse(request, errorCode, errorAttributes);
+        return errorResponse.toMap();
+    }
+
+    private boolean validateNotFound(Object error, Object status) {
+        return "Not Found".equals(error) && (Integer)status == 404;
+    }
+
+    private static ErrorResponse createErrorResponse(HttpServletRequest request, ErrorCode errorCode, Map<String, Object> errorAttributes) {
+        return new ErrorResponse(
                 errorCode.getDescription(),
                 errorCode,
                 (String) errorAttributes.getOrDefault("message", errorCode.getDescription()),
                 request.getMethod(),
                 (String) errorAttributes.get("path")
         );
-        return errorResponse.toMap();
     }
 }
