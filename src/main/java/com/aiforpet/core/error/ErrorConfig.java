@@ -11,7 +11,9 @@ public class ErrorConfig {
 
     @Bean
     public ErrorProperties errorProperties() {
-        return new ErrorProperties();
+        ErrorProperties errorProperties = new ErrorProperties();
+        errorProperties.setIncludeMessage(ErrorProperties.IncludeAttribute.ALWAYS);
+        return errorProperties;
     }
 
     @Bean

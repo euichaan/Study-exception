@@ -1,7 +1,6 @@
 package com.aiforpet.core.error;
 
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Map;
 
-@Slf4j
 @Controller
 @RequestMapping("${server.error.path:${error.path:/error}}")
 public class ErrorController extends BasicErrorController {
